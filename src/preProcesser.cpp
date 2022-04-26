@@ -3,22 +3,10 @@
 	=                                                                              =
 	=            Proyect:       Text Classifier                                    =
 	=            File name:     preProcesser.cpp                                   =
-	=            Author:        Adrián Epifanio Rodríguez Hernández                =
-	=            Date:          21/04/2021                                         =
-	=            Subject:       Advanced Artificial Inteligence                    =
-	=            Language:      C++                                                =
-	=            Email:         alu0101158280@ull.edu.es                           =
-	=            Place:         Universidad De La Laguna                           =
-	=                           Escuela Superior de Ingeniería y Tecnología        =
-	=                                                                              =
+	=            Author:        Gabriel Melián Hernández		                   =
+	=																			   =
 =========================================================================================
 =======================================================================================*/
-/*
-* @Author: Adrian Epifanio
-* @Date:   2021-04-21 13:04:42
-* @Last Modified by:   Adrian Epifanio
-* @Last Modified time: 2021-05-14 12:50:50
-*/
 /*------------------  FUNCTIONS  -----------------*/
 
 #include "../include/preProcesser.hpp"

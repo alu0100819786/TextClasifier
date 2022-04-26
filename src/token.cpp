@@ -3,22 +3,10 @@
 	=                                                                              =
 	=            Proyect:       Text Classifier                                    =
 	=            File name:     token.cpp                                          =
-	=            Author:        Adrián Epifanio Rodríguez Hernández                =
-	=            Date:          21/04/2021                                         =
-	=            Subject:       Advanced Artificial Inteligence                    =
-	=            Language:      C++                                                =
-	=            Email:         alu0101158280@ull.edu.es                           =
-	=            Place:         Universidad De La Laguna                           =
-	=                           Escuela Superior de Ingeniería y Tecnología        =
-	=                                                                              =
+	=            Author:        Gabriel Melián Hernández		                   =
+	=																			   =
 =========================================================================================
 =======================================================================================*/
-/*
-* @Author: Adrian Epifanio
-* @Date:   2021-04-25 21:00:43
-* @Last Modified by:   Adrian Epifanio
-* @Last Modified time: 2021-05-14 12:51:10
-*/
 /*------------------  FUNCTIONS  -----------------*/
 
 #include "../include/token.hpp"
@@ -26,253 +14,199 @@
 /*------------------------------------------------*/
 
 /**
- * @brief      Constructs a new instance.
+ * @brief      Construye una nueva instancia.
  */
 Token::Token (void) {
 	set_Name("");
 	set_Ammount(0);
-	set_Probability(0);
 	set_Type("");
 }
 
 /**
- * @brief      Constructs a new instance.
+ * @brief      Construye una nueva instancia.
  *
- * @param[in]  name  The name
+ * @param[in]  name  El nombre.
  */
 Token::Token (std::string name) {
 	set_Name(name);
 	set_Ammount(1);
-	set_Probability(-9999999999999.99);
 	set_Type("");
 }
 
 /**
- * @brief      Destroys the object.
+ * @brief      Destruye el objeto.
  */
 Token::~Token (void) {
 }
 
 /**
- * @brief      Gets the name.
+ * @brief      Consigue el nombre.
  *
- * @return     The name.
+ * @return     El nombre.
  */
 std::string Token::get_Name(void) const {
 	return name_;
 }
 
 /**
- * @brief      Gets the ammount.
+ * @brief      Consigue la cantidad.
  *
- * @return     The ammount.
+ * @return     La cantidad.
  */
 unsigned Token::get_Ammount (void) const {
 	return ammount_;
 }
 
 /**
- * @brief      Gets the probability.
+ * @brief      Consigue el tipo.
  *
- * @return     The probability.
- */
-float Token::get_Probability (void) const {
-	return probability_;
-}
-
-/**
- * @brief      Gets the multi class.
- *
- * @param[in]  pos   The position
- *
- * @return     The multi class.
- */
-float Token::get_MultiClass (unsigned pos) const {
-	if (pos < multiClass_.size()) 
-		return multiClass_[pos];
-	else {
-		std::cout << std::endl << "Error, pos must be lower than multiClass_ size." << std::endl;
-		exit(1);
-	}
-}
-
-/**
- * @brief      Gets the multi class.
- *
- * @return     The multi class.
- */
-std::vector<float> Token::get_MultiClass (void) const {
-	return multiClass_;
-}
-
-/**
- * @brief      Gets the type.
- *
- * @return     The type.
+ * @return     El tipo.
  */
 std::string Token::get_Type (void) const {
 	return type_;
 }
 
 /**
- * @brief      Sets the name.
+ * @brief      Establece el nombre.
  *
- * @param[in]  name  The name
+ * @param[in]  name  El nombre.
  */
 void Token::set_Name (std::string name) {
 	name_ = name;
 }
 
 /**
- * @brief      Sets the ammount.
+ * @brief      Establece la cantidad.
  *
- * @param[in]  ammount  The ammount
+ * @param[in]  ammount  La cantidad.
  */
 void Token::set_Ammount (unsigned ammount) {
 	ammount_ = ammount;
 }
 
 /**
- * @brief      Sets the probability.
+ * @brief      Establece el tipo.
  *
- * @param[in]  newProbability  The new probability
- */
-void Token::set_Probability (float newProbability) {
-	probability_ = newProbability;
-}
-
-/**
- * @brief      Sets the multi class.
- *
- * @param[in]  newMultiClass  The new multi class
- */
-void Token::set_MultiClass (std::vector<float> newMultiClass) {
-	multiClass_ = newMultiClass;
-}
-
-/**
- * @brief      Sets the type.
- *
- * @param[in]  newType  The new type
+ * @param[in]  newType  El tipo.
  */
 void Token::set_Type (std::string newType) {
 	type_ = newType;
 }
 
 /**
- * @brief      Less-than comparison operator.
+ * @brief      Operador <.
  *
- * @param[in]  otherToken  The other token
+ * @param[in]  otherToken  El otro token.
  *
- * @return     The result of the less-than comparison
+ * @return     El resultado de la comparación.
  */
 bool Token::operator< (const Token& otherToken) const {
 	return (get_Name() < otherToken.get_Name());
 }
 
 /**
- * @brief      Less-than-or-equal comparison operator.
+ * @brief      Operador <=.
  *
- * @param[in]  otherToken  The other token
+ * @param[in]  otherToken  El otro token.
  *
- * @return     The result of the less-than-or-equal comparison
+ * @return     El resultado de la comparación.
  */
 bool Token::operator<= (const Token& otherToken) const {
 	return (get_Name() <= otherToken.get_Name());
 }
 
 /**
- * @brief      Less-than comparison operator.
+ * @brief      Operador <.
  *
- * @param[in]  str   The string
+ * @param[in]  otherToken  El otro token.
  *
- * @return     The result of the less-than comparison
+ * @return     El resultado de la comparación.
  */
 bool Token::operator< (const std::string& str) const {
 	return (get_Name() < str);
 }
 
 /**
- * @brief      Less-than-or-equal comparison operator.
+ * @brief      Operador <=.
  *
- * @param[in]  str   The string
+ * @param[in]  otherToken  El otro token.
  *
- * @return     The result of the less-than-or-equal comparison
+ * @return     El resultado de la comparación.
  */
 bool Token::operator<= (const std::string& str) const {
 	return (get_Name() <= str);
 }
 
 /**
- * @brief      Greater-than comparison operator.
+ * @brief      Operador >.
  *
- * @param[in]  otherToken  The other token
+ * @param[in]  otherToken  El otro token.
  *
- * @return     The result of the greater-than comparison
+ * @return     El resultado de la comparación.
  */
 bool Token::operator> (const Token& otherToken) const {
 	return (get_Name() > otherToken.get_Name());
 }
 
 /**
- * @brief      Greater-than-or-equal comparison operator.
+ * @brief      Operador >=.
  *
- * @param[in]  otherToken  The other token
+ * @param[in]  otherToken  El otro token.
  *
- * @return     The result of the greater-than-or-equal comparison
+ * @return     El resultado de la comparación.
  */
 bool Token::operator>= (const Token& otherToken) const {
 	return (get_Name() >= otherToken.get_Name());
 }
 
 /**
- * @brief      Greater-than comparison operator.
+ * @brief      Operador >.
  *
- * @param[in]  str   The string
+ * @param[in]  otherToken  El otro token.
  *
- * @return     The result of the greater-than comparison
+ * @return     El resultado de la comparación.
  */
 bool Token::operator> (const std::string& str) const {
 	return (get_Name() > str);
 }
 
 /**
- * @brief      Greater-than-or-equal comparison operator.
+ * @brief      Operador >=.
  *
- * @param[in]  str   The string
+ * @param[in]  otherToken  El otro token.
  *
- * @return     The result of the greater-than-or-equal comparison
+ * @return     El resultado de la comparación.
  */
 bool Token::operator>= (const std::string& str) const {
 	return (get_Name() >= str);
 }
 
 /**
- * @brief      Equality operator.
+ * @brief      Operador ==.
  *
- * @param[in]  otherToken  The other token
+ * @param[in]  otherToken  El otro token.
  *
- * @return     The result of the equality
+ * @return     El resultado de la comparación.
  */
 bool Token::operator== (const Token& otherToken) const {
 	return (get_Name() == otherToken.get_Name());
 }
 
 /**
- * @brief      Equality operator.
+ * @brief      Operador ==.
  *
- * @param[in]  str   The string
+ * @param[in]  otherToken  El otro token.
  *
- * @return     The result of the equality
+ * @return     El resultado de la comparación.
  */
 bool Token::operator== (const std::string& str) const {
 	return (get_Name() == str);
 }
 
 /**
- * @brief      Increment operator.
+ * @brief      Operador ++.
  *
- * @return     The result of the increment
+ * @return     El resultado del incremento.
  */
 Token& Token::operator++ (void) {
 	this -> set_Ammount(get_Ammount() + 1);
@@ -280,60 +214,29 @@ Token& Token::operator++ (void) {
 }
 
 /**
- * @brief      Assignment operator.
+ * @brief      Operador =.
  *
- * @param[in]  otherToken  The other token
+ * @param[in]  otherToken  El otro token.
  *
- * @return     The result of the assignment
+ * @return     El resultado de la asignación.
  */
 Token& Token::operator= (const Token& otherToken) {
 	this -> set_Name(otherToken.get_Name());
 	this -> set_Ammount(otherToken.get_Ammount());
-	this -> set_Probability(otherToken.get_Probability());
 	this -> set_Type(otherToken.get_Type());
-	this -> set_MultiClass(otherToken.get_MultiClass());
 	return *this;
 }
 
 /**
- * @brief      Incremetates the ammount in 1.
+ * @brief      Incrementa la cantidad en 1.
  */
 void Token::incrementate (void) {
 	ammount_++;
 }
 
 /**
- * @brief      Adds the class probability and newClass type if aplicable.
- *
- * @param[in]  prob      The prob
- * @param[in]  newClass  The new class
- */
-void Token::addClassProb (float prob, std::string newClass) {
-	multiClass_.push_back(prob);
-	if (prob > probability_) {
-		probability_ = prob;
-		type_ = newClass;
-	}
-}
-
-/**
- * @brief      Generates the ln probability of the token.
- *
- * @param[in]  vocSize       The voc size
- * @param[in]  tokenAmmount  The token ammount
- *
- * @return     The ln probability
- */
-float Token::generateLogProb (const unsigned& vocSize, const unsigned& tokenAmmount) {
-	probability_ = (ammount_ + 1);
-	int divider = (vocSize + tokenAmmount);
-	probability_ /= divider;
-	return std::log(probability_);
-}
-
-/**
- * @brief      Prints a token.
+ * @brief      Escribe un token.
  */
 void Token::printToken (void) const {
-	std::cout << std::endl << "Token Info:" << std::endl << "\t - Name: " << get_Name() << std::endl << "\t - Ammount: " << get_Ammount() << std::endl << "\t - Type: " << get_Type() << std::endl << "\t - Prob: " << get_Probability();
+	std::cout << std::endl << "Token Info:" << std::endl << "\t - Name: " << get_Name() << std::endl << "\t - Ammount: " << get_Ammount() << std::endl << "\t - Type: " << get_Type() << std::endl;
 }
