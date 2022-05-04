@@ -247,4 +247,3 @@ float Chrono::get_MilliSeconds (int decimalAmmount) {
 float Chrono::get_MicroSeconds (void) {
 	return totalTime_;
 }
-

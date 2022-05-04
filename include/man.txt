@@ -1,3 +1,7 @@
 Manual de ayuda.
 
 ../bin/textClassifier --vocabulary ../inputs/COV_train.csv ../outputs/vocabulary.txt ../inputs/stopWords.txt
+
+../bin/textClassifier --corpus ../inputs/COV_train.csv ../inputs/stopWords.txt Negative Positive
+
+../bin/textClassifier --learner ../outputs/vocabulary.txt Negative Positive

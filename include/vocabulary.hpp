@@ -42,7 +42,7 @@ class Vocabulary {
 		std::string type_;				// El tipo del vocabulario.
 
 	public:
-		// Constructores & Destructores.
+		// Constructores y Destructor.
 		Vocabulary (void);
 		Vocabulary (std::string inputFile, std::string outpuFile);
 		~Vocabulary (void);
@@ -71,8 +71,10 @@ class Vocabulary {
 		void preProcessData (std::string& stopWordFile);
 		std::vector<std::string> loadStopWord (std::string& inputFile);
 		void generateVocabulary (std::string& inputFile, bool tokenized);
+		void calculateProbabilities (void);
 
 		// Escritura.
 		void readVocabulary (std::string& inputFile);
 		void storeVocabulary (std::string& outputFile);
+		void readLearnedData (std::string& inputFile);
 };

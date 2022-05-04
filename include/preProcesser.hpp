@@ -76,7 +76,6 @@ class PreProcesser {
 
 		// Lectura & Escritura.
 		int loadData (std::string& inputFile, std::string dataType);
-		void loadTestData (std::string& inputFile);
 		void printData (void);
 		void storeData(std::string& outputFile, int dataLines);
 

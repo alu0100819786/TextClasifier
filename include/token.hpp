@@ -28,27 +28,30 @@
 class Token {
 
 	private:
-		// Atributos.
+		// Atributos
 		std::string name_;				// El nombre del token.
 		unsigned ammount_;				// La cantidad de veces que aparece el token en el corpus.
+		float probability_;				// La probabilidad.
 		std::string type_; 				// El tipo del token en las clases especificadas.
 
 	public:
-		// Constructores & Destructor.
+		// Constructores y Destructor.
 		Token (void);
 		Token (std::string name);
 		~Token (void);
 
-		// Getters & Setters
+		// Setters y Getters.
 		std::string get_Name(void) const;
 		unsigned get_Ammount (void) const;
+		float get_Probability (void) const;
 		std::string get_Type (void) const;
 
 		void set_Name (std::string name);
 		void set_Ammount (unsigned ammount);
+		void set_Probability (float newProbability);
 		void set_Type (std::string newType);
 
-		// Sobrecarga de Operadores.
+		// Sobrecarga de Operadores
 		bool operator< (const Token& otherToken) const;
 		bool operator<= (const Token& otherToken) const;
 		bool operator< (const std::string& str) const;
@@ -64,6 +67,7 @@ class Token {
 
 		// Funciones.
 		void incrementate (void);
+		float generateLogProb (const unsigned& vocSize, const unsigned& tokenAmmount);
 
 		// Escritura.
 		void printToken (void) const;

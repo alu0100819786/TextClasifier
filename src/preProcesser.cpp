@@ -414,27 +414,6 @@ int PreProcesser::loadData (std::string& inputFile, std::string dataType) {
 }
 
 /**
- * @brief      Carga los datos de test.
- *
- * @param      inputFile  El fichero de entrada.
- */
-void PreProcesser::loadTestData (std::string& inputFile) {
-	data_ = "";
-	const std::string ENDL = " PREPROCESSERENDL "; // Var that is going to be used in classifier to detects the end of a line
-	std::ifstream file(inputFile, std::ios::in);
-	if (file.fail()) {
-		std::cout << std::endl << "Error 404, file not found in loadTestData function." << std::endl;
-		exit(1);
-	}
-	std::string aux = "";
-	while (!file.eof()) {
-		std::getline(file, aux);
-		data_ += aux + ENDL;	
-	}
-	file.close();
-}
-
-/**
  * @brief      Muestra los datos..
  */
 void PreProcesser::printData  (void) {

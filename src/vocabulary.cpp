@@ -276,7 +276,6 @@ void Vocabulary::generateVocabulary (std::string& inputFile, bool tokenize) {
 }
 
 
-
 /**
  * @brief      Lee un Vocabulario creado desde el fichero.
  *
@@ -319,8 +318,50 @@ void Vocabulary::storeVocabulary (std::string& outputFile) {
 		for (auto i : vocabulary_) {
 			file << std::endl << i.get_Name();
 		}
-		// Esto representa las palabras desconocidas.
+		// This represents unkown words
 		file << std::endl << "<UNK>";
 	}
 	file.close();
+}
+
+/**
+ * @brief      Lee los datos de aprendiza yt los guarda con sus respectivas
+ *             probabilidades y frecuencias.
+ *
+ * @param      inputFile  El fichero de entrada.
+ */
+void Vocabulary::readLearnedData (std::string& inputFile) {
+	std::ifstream file(inputFile, std::ios::in);
+	std::string type = "";
+	type += inputFile[inputFile.length() - 5];
+	set_Type(type);
+	if (file.fail()) {
+		std::cout << std::endl << "Error 404, readVocabulary file not found. (" << inputFile << ")" << std::endl;
+		exit(1);
+	}
+	set_NTokens(0);
+	set_VocabularyCounter(0);
+	std::string word;
+	std::getline(file, word);
+	std::string tmp = "";
+	for (unsigned i = 0; i < word.length(); i++) {
+		if (isdigit(word[i])) {
+			tmp += word[i];
+		}
+	}
+	set_NLines(std::stoi(tmp));
+	std::getline(file, word);
+	while (!file.eof()) {
+		file >> word >> word;
+		Token newToken(word);
+		newToken.set_Type(type);
+		file >> word >> word;
+		newToken.set_Ammount(std::stoi(word));
+		file >> word >> word;
+		newToken.set_Probability(std::stof(word));
+		vocabulary_.insert(newToken);
+		nTokens_++;
+	}
+	file.close();
+	set_VocabularyCounter(vocabulary_.size());
 }

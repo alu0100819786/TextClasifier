@@ -19,6 +19,7 @@
 Token::Token (void) {
 	set_Name("");
 	set_Ammount(0);
+	set_Probability(0);
 	set_Type("");
 }
 
@@ -30,6 +31,7 @@ Token::Token (void) {
 Token::Token (std::string name) {
 	set_Name(name);
 	set_Ammount(1);
+	set_Probability(-9999999999999.99);
 	set_Type("");
 }
 
@@ -58,6 +60,15 @@ unsigned Token::get_Ammount (void) const {
 }
 
 /**
+ * @brief      Consigue la probabilidad.
+ *
+ * @return     La Probabilidad.
+ */
+float Token::get_Probability (void) const {
+	return probability_;
+}
+
+/**
  * @brief      Consigue el tipo.
  *
  * @return     El tipo.
@@ -82,6 +93,15 @@ void Token::set_Name (std::string name) {
  */
 void Token::set_Ammount (unsigned ammount) {
 	ammount_ = ammount;
+}
+
+/**
+ * @brief      Establece la probabilidad.
+ *
+ * @param[in]  newProbability  La nueva probabilidad.
+ */
+void Token::set_Probability (float newProbability) {
+	probability_ = newProbability;
 }
 
 /**
@@ -223,6 +243,7 @@ Token& Token::operator++ (void) {
 Token& Token::operator= (const Token& otherToken) {
 	this -> set_Name(otherToken.get_Name());
 	this -> set_Ammount(otherToken.get_Ammount());
+	this -> set_Probability(otherToken.get_Probability());
 	this -> set_Type(otherToken.get_Type());
 	return *this;
 }
@@ -235,8 +256,23 @@ void Token::incrementate (void) {
 }
 
 /**
+ * @brief      Genera la probabilidad de un token.
+ *
+ * @param[in]  vocSize       Tamaño del vocabulario.
+ * @param[in]  tokenAmmount  Cantidad de veces que aparece un token
+ *
+ * @return     El Log de la probabilidad.
+ */
+float Token::generateLogProb (const unsigned& vocSize, const unsigned& tokenAmmount) {
+	probability_ = (ammount_ + 1);
+	int divider = (vocSize + tokenAmmount);
+	probability_ /= divider;
+	return std::log(probability_);
+}
+
+/**
  * @brief      Escribe un token.
  */
 void Token::printToken (void) const {
-	std::cout << std::endl << "Token Info:" << std::endl << "\t - Name: " << get_Name() << std::endl << "\t - Ammount: " << get_Ammount() << std::endl << "\t - Type: " << get_Type() << std::endl;
+	std::cout << std::endl << "Token Info:" << std::endl << "\t - Name: " << get_Name() << std::endl << "\t - Ammount: " << get_Ammount() << std::endl << "\t - Type: " << get_Type() << std::endl << "\t - Prob: " << get_Probability();
 }

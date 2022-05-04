@@ -1,7 +1,7 @@
 # Variables
 TIME =$(LOGPATH)$(shell date)
 # Object Vars
-OBJECTS = main.o vocabulary.o preProcesser.o Chrono.o token.o
+OBJECTS = main.o vocabulary.o preProcesser.o Chrono.o token.o corpus.o learner.o
 # Compilation flags
 CFLAGS = -c -std=c++17 -Wall
 
@@ -24,6 +24,14 @@ Chrono.o: ../src/Chrono.cpp ../include/Chrono.hpp
 token.o: ../src/token.cpp ../include/token.hpp
 	g++ $(CFLAGS) ../src/token.cpp
 
+corpus.o: ../src/corpus.cpp ../include/corpus.hpp
+	g++ $(CFLAGS) ../src/corpus.cpp
+
+learner.o: ../src/learner.cpp ../include/learner.hpp
+	g++ $(CFLAGS) ../src/learner.cpp
+
+
+
 
 .PHONY: clean
 clean:
@@ -37,7 +45,15 @@ fullRun:
 	make clean
 	make
 	make runVocabulary
+	make runCorpus
+	make runLearner
 
+runLearner:
+	../bin/textClassifier --learner ../outputs/vocabulary.txt Negative Positive
+
+runCorpus:
+	../bin/textClassifier --corpus ../inputs/COV_train.csv ../inputs/stopWords.txt Negative Positive
 
 runVocabulary:
 	../bin/textClassifier --vocabulary ../inputs/COV_train.csv ../outputs/vocabulary.txt ../inputs/stopWords.txt
+
